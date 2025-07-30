@@ -1,5 +1,5 @@
 flask==2.3.3
-transformers[torch]==4.30.0
+transformers==4.30.0
 torch==2.5.1
 nltk==3.8.1
 pymongo==4.5.0
