@@ -5,3 +5,4 @@ nltk==3.8.1
 pymongo==4.5.0
 werkzeug==2.3.7
 sentencepiece==0.1.99
+tokenizers==0.13.3
