@@ -1,29 +1,27 @@
-# Base image
-FROM python:3.10-slim
+# Use a lightweight Python base image
+FROM python:3.10-slim-buster
 
-# Set working directory
+# Set working directory inside the container
 WORKDIR /app
 
-# Install system dependencies
+# Install only required system dependencies
 RUN apt-get update && apt-get install -y \
-    build-essential \
+    gcc \
     libffi-dev \
-    libssl-dev \
-    wget \
-    git \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy all files into container
+# Copy project files to the container
 COPY . /app
 
-# Create virtual environment & install dependencies
+# Set up virtual environment and install Python dependencies
 RUN python -m venv venv \
  && . venv/bin/activate \
  && pip install --upgrade pip \
  && pip install --prefer-binary -r requirements.txt
 
-# Expose port
+# Expose the port Flask will run on
 EXPOSE 5000
 
-# Run the app
-CMD [ "venv/bin/python", "app.py" ]
+# Start the Flask app
+CMD ["venv/bin/python", "app.py"]
