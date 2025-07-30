@@ -1,3 +1,4 @@
+#villan7667
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for, flash
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 from pymongo import MongoClient
@@ -44,7 +45,7 @@ logger = logging.getLogger(__name__)
 # Load model with error handling
 try:
     model = T5ForConditionalGeneration.from_pretrained('t5-small')
-    tokenizer = T5Tokenizer.from_pretrained('t5-small')
+    tokenizer = T5Tokenizer.from_pretrained("t5-small", use_fast=False)
     logger.info("Model loaded successfully")
 except Exception as e:
     logger.error(f"Error loading model: {e}")
