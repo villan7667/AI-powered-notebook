@@ -1,5 +1,5 @@
-# Use a lightweight Python base image
-FROM python:3.10-slim-buster
+# Use a modern slim base image
+FROM python:3.10-slim-bookworm
 
 # Set working directory inside the container
 WORKDIR /app
@@ -11,10 +11,10 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy project files to the container
+# Copy all project files into container
 COPY . /app
 
-# Set up virtual environment and install Python dependencies
+# Set up virtual environment & install dependencies
 RUN python -m venv venv \
  && . venv/bin/activate \
  && pip install --upgrade pip \
